@@ -1,0 +1,78 @@
+<section><span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span>
+  <div class="signin">
+
+    <div class="content">
+
+      <h2 *ngIf="isLoginMode">Connexion</h2>
+      <h2 *ngIf="!isLoginMode">Inscription</h2>
+
+      <form class="form" (ngSubmit)="onSubmit()">
+
+        <div class="inputBox" *ngIf="!isLoginMode">
+
+          <input type="text" id="username" [(ngModel)]="username" name="username" required> <i>Username</i>
+
+        </div>
+        <div class="inputBox">
+
+          <input type="email" id="email" [(ngModel)]="email" name="email" required> <i>Email</i>
+
+        </div>
+
+        <div class="inputBox">
+
+          <input type="password" id="password" [(ngModel)]="password" name="password" required> <i>Password</i>
+
+        </div>
+
+        <div class="links"><a href="#"></a>
+          <a
+            (click)="onSwitchMode()">{{ isLoginMode ? 'Créer un compte' : 'Déjà un compte ? Connectez-vous' }}</a>
+
+        </div>
+
+        <div class="inputBox">
+
+          <input type="submit" value="{{ isLoginMode ? 'Se connecter' : 'S\'inscrire' }}">
+
+        </div>
+
+
+      </form>
+
+    </div>
+
+  </div>
+</section>
