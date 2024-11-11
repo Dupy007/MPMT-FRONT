@@ -1,0 +1,94 @@
+<app-header></app-header>
+<section><span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span>
+
+  <div class="signin" *ngIf="isEditMode">
+
+    <div class="content">
+      <h2>{{ isNew ? 'Créer une nouvelle tâche' : 'Modifier la tâche' }}</h2>
+      <form class="form" (ngSubmit)="onSubmit()">
+        <div class="inputBox">
+          <input type="text" id="username" [(ngModel)]="task.name" name="name" required> <i>Name</i>
+        </div>
+        <div class="inputBox">
+          <input type="text" id="email" [(ngModel)]="task.description" name="description" required> <i>Description</i>
+        </div>
+        <div class="inputBox">
+          <input type="date" id="due_date" [(ngModel)]="task.due_date" name="due_date" required> <i>Date échéance</i>
+        </div>
+        <div class="inputBox">
+          <input type="date" id="end_date" [(ngModel)]="task.end_date" name="end_date" required> <i>Date de fin</i>
+        </div>
+        <div class="inputBox">
+          <input type="number" id="priority" [(ngModel)]="task.priority" name="priority" required> <i>Priorité</i>
+        </div>
+        <div class="inputBox">
+          <select name="status" id="status" required [(ngModel)]="task.status" >
+            <option value="1">Open</option>
+            <option value="2">Close</option>
+          </select>
+          <i>Statut</i>
+        </div>
+        <div class="inputBox">
+          <select name="assigned" id="assigned" required [(ngModel)]="task.assigned.id">
+              <option *ngFor="let item of members" value="{{item.id}}">{{ item.username }}</option>
+          </select>
+          <i>Assigné à</i>
+        </div>
+        <div class="inputBox">
+          <input type="submit" value="Sauvegarder">
+        </div>
+      </form>
+      <div class="links">
+        <a  class="btn btn-danger" (click)="onSwitchMode()">Annuler</a>
+      </div>
+    </div>
+  </div>
+  <div class="array" *ngIf="!isEditMode">
+    <div class="content">
+      <div class="dashboard">
+        <h1>{{ task.name }}</h1>
+        <p>Description :{{ task.description }}</p>
+        <p>Echeance :{{ task.due_date }}</p>
+        <p>Priorité :{{ task.priority }}</p>
+        <p>Statut :{{ task.priority == 1 ? 'Open' : 'Close' }}</p>
+        <p *ngIf="task.end_date">Date de fin :{{ task.end_date }}</p>
+        <p *ngIf="task.assign">Assigné à :{{ task.assign.username }}</p>
+        <div class="links">
+          <a (click)="onSwitchMode()">Modifier</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
