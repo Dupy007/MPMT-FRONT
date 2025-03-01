@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient,} from '@angular/common/http';
-import {AuthService} from "./auth.service";
 import {environment} from "../../env";
 
 @Injectable({
@@ -11,8 +10,8 @@ export class UserService {
   private apiUrl = environment.apiURL;
   private headers: any;
 
-  constructor(private http: HttpClient, private authservice: AuthService) {
-    this.headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + authservice.token};
+  constructor(private http: HttpClient) {
+    this.headers = {'Content-Type': 'application/json','Accept':'application/json'};
   }
 
   register(user: any) {

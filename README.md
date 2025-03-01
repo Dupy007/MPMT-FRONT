@@ -20,12 +20,12 @@ cd MPMT-FRONT
 
 ### 2. Installer les dépendances
 ```bash
-npm install
+npm install --legacy-peer-deps
 ```
 
 ### 3. Lancer l'application
 ```bash
-ng serve
+npm run ng serve
 ```
 
 L'application sera accessible sur `http://localhost:4200`.
@@ -41,4 +41,4 @@ docker build -t mpmt-front .
 docker run -d -p 4200:80 mpmt-front
 ```
 
-L'application sera disponible sur `http://localhost:4200`.
+L'application sera disponible sur `http://localhost:80`.

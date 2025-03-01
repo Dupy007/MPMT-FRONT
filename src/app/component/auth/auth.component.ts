@@ -25,7 +25,7 @@ export class AuthComponent {
       let login = {email: this.email, password: this.password}
       this.userService.login(login).subscribe(
         res => {
-           localStorage.setItem('user', JSON.stringify(res));
+          localStorage.setItem('user', JSON.stringify(res));
           this.router.navigate(['/dashboard']);
         },
         error => {
@@ -35,7 +35,7 @@ export class AuthComponent {
     } else {
       this.userService.register({email: this.email, password: this.password, username: this.username}).subscribe(
         res => {
-           localStorage.setItem('user', JSON.stringify(res));
+          localStorage.setItem('user', JSON.stringify(res));
           this.router.navigate(['/dashboard']);
         },
         error => {

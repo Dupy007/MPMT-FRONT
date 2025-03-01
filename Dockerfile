@@ -1,19 +1,26 @@
-#FROM node:16 AS build
-#
-#WORKDIR /app
-#
-#COPY package*.json ./
-#
-#RUN npm install
-#
-#COPY . .
-#
-#RUN npm run build --prod
+# Dockerfile pour déployer l'application Angular 17
 
-FROM nginx:1.21
+# Étape 1: Build de l'application
+FROM node:18 AS build-stage
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm install --legacy-peer-deps
+COPY . .
+RUN npm run build -- --configuration production
 
-COPY ./dist/view/browser/ /usr/share/nginx/html
-
+# Étape 2: Exécution avec Nginx
+FROM nginx:1.23-alpine
+COPY --from=build-stage /app/dist/view/browser/ /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
-
 CMD ["nginx", "-g", "daemon off;"]
+
+# Fichier de configuration pour les tests unitaires
+
+# Étape 3: Test
+# FROM node:18 AS test-stage
+# WORKDIR /app
+# COPY package.json package-lock.json ./
+# RUN npm install --legacy-peer-deps
+# COPY . .
+# RUN npm run test -- --watch=false --browsers=ChromeHeadless

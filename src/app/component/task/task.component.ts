@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TaskService} from "../../services/task.service";
 import {ProjectService} from "../../services/project.service";
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-task',
@@ -30,12 +31,24 @@ export class TaskComponent implements OnInit {
     private taskService: TaskService,
     private router: Router,
     private projectService: ProjectService,
+    private userService:UserService
   ) {
   }
 
   ngOnInit() {
     const taskId = this.route.snapshot.paramMap.get('id');
     this.task.project.id = this.route.snapshot.queryParamMap.get('projectId');
+    if (this.task.project.id) {
+      this.projectService.getProjectById(this.task.project.id).subscribe(
+        (project) => {
+          this.project = project;
+          this.members = project.members;
+        },
+        error => {
+          console.error('Failed to load project', error);
+        }
+      );
+    }
     if (taskId != 'new') {
       this.isNew = false;
       this.isEditMode = false;
@@ -43,15 +56,6 @@ export class TaskComponent implements OnInit {
         (task) => {
           this.task = task;
           this.task.assigned = {id: task.assignedId};
-          this.projectService.getProjectById(this.task.projectId).subscribe(
-            (project) => {
-              this.project = project;
-              this.members = project.members;
-            },
-            error => {
-              console.error('Failed to load project', error);
-            }
-          );
         },
         error => {
           console.error('Failed to load task', error);

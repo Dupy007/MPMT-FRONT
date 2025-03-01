@@ -100,7 +100,7 @@ export class ProjectComponent implements OnInit {
       if (this.isNew) {
         this.projectService.createProject(this.project).subscribe(
           data => {
-            this.router.navigate(['/project', data.id]);
+            this.router.navigate(['/dashboard']);
           },
           error => {
             console.error('Failed to create task', error);

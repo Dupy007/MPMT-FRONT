@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {AuthService} from "./auth.service";
 import {environment} from "../../env";
 
 @Injectable({
@@ -11,8 +10,8 @@ export class ProjectService {
   private apiUrl = environment.apiURL+"/project";
   private headers: any;
 
-  constructor(private http: HttpClient, private authservice: AuthService) {
-    this.headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + authservice.token};
+  constructor(private http: HttpClient) {
+    this.headers = {'Content-Type': 'application/json','Accept':'application/json'};
   }
 
   getProjects(): Observable<any[]> {

@@ -8,10 +8,10 @@ import {DashboardComponent} from "./component/dashboard/dashboard.component";
 import {HeaderComponent} from "./component/header/header.component";
 import {AuthComponent} from "./component/auth/auth.component";
 import {TaskComponent} from "./component/task/task.component";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule,HTTP_INTERCEPTORS } from "@angular/common/http";
 import {ProjectComponent} from "./component/project/project.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DashboardComponent,
     HeaderComponent,
     ProjectComponent,
-    TaskComponent
+    TaskComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +28,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     NgbModule,
   ],
-  providers: [],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
