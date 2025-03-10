@@ -31,14 +31,10 @@ npm run ng serve
 L'application sera accessible sur `http://localhost:4200`.
 
 ## Dockerisation
-### 1. Construire l'image Docker
-```bash
-docker build -t mpmt-front .
-```
 
-### 2. Exécuter l'application via Docker
-```bash
-docker run -d -p 4200:80 mpmt-front
-```
+### 1. Construire l'image et exécuter l'application via Docker
 
-L'application sera disponible sur `http://localhost:80`.
+```bash
+docker-compose up --build -d
+```
+L'application sera disponible sur `http://localhost`.

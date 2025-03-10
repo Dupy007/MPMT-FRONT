@@ -15,12 +15,3 @@ COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
-# Fichier de configuration pour les tests unitaires
-
-# Étape 3: Test
-# FROM node:18 AS test-stage
-# WORKDIR /app
-# COPY package.json package-lock.json ./
-# RUN npm install --legacy-peer-deps
-# COPY . .
-# RUN npm run test -- --watch=false --browsers=ChromeHeadless

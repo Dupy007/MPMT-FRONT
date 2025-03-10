@@ -1,0 +1,8 @@
+version: '1.0'
+services:
+  view:
+    build: .
+    container_name: view_mpmt
+    restart: always
+    ports:
+      - "80:80"
