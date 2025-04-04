@@ -1,29 +1,30 @@
-import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
-import { AuthService } from '../services/auth.service'; 
+import {Injectable} from '@angular/core';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
+import {Observable, tap} from 'rxjs';
+import {AuthService} from '../services/auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+  }
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
+
     const excludedUrls = ['/api/login', '/api/register']; // URL à exclure
     const logoutUrl = '/api/logout';
     const isExcluded = excludedUrls.some(url => req.url.includes(url));
-    
+
     let authReq = req;
     if (!isExcluded) {
       const token = this.authService.getToken();
-      
       if (token) {
         authReq = req.clone({
-          setHeaders: { Authorization: token }
+          setHeaders: {Authorization: token, 'Access-Control-Allow-Origin': '*'}
         });
       }
     }
-  
-  
+
+
     return next.handle(authReq).pipe(
       tap(event => {
         if (event instanceof HttpResponse) {
@@ -39,5 +40,5 @@ export class AuthInterceptor implements HttpInterceptor {
       })
     );
   }
-  
+
 }
