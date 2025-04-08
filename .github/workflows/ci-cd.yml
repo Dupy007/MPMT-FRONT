@@ -43,18 +43,3 @@ jobs:
       # Étape 6 : Build du projet Angular
       - name: Build Angular project
         run: npm run build -- --configuration production
-
-      # Étape 7 : Connexion à Docker Hub
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_TOKEN }}
-
-      # Étape 8 : Build des services via Docker Compose
-      - name: Docker Compose build
-        run: docker-compose build
-
-      # Étape 9 : Push des images via Docker Compose
-      - name: Docker Compose push
-        run: docker-compose push

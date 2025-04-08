@@ -51,10 +51,8 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      # Étape 8 : Build des services via Docker Compose
-      - name: Docker Compose build
-        run: docker-compose build
-
-      # Étape 9 : Push des images via Docker Compose
-      - name: Docker Compose push
-        run: docker-compose push
+      # Étape 8 : Build et Push de l'image Docker
+      - name: Build and Push Docker image
+        run: |
+          docker build -t dupy007/view_mpmt:latest .
+          docker push dupy007/view_mpmt:latest
