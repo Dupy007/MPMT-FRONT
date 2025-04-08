@@ -2,6 +2,7 @@ version: '1.0'
 services:
   view:
     build: .
+    image: dupy007/view_mpmt:latest
     container_name: view_mpmt
     restart: always
     ports:
